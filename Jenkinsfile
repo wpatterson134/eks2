@@ -19,7 +19,7 @@ pipeline {
         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
         credentialsId: '279824249008'
     ]]) {
-        sh 'terraform apply --auto-approve'
+        sh 'terraform ${action} --auto-approve'
     }
             }
         }

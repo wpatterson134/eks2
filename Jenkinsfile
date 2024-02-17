@@ -13,9 +13,14 @@ pipeline {
         }
         stage('terraform apply') {
             steps {
-               withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
-                sh 'terraform apply --auto-approve'
-                }
+               withCredentials([[
+        $class: 'AmazonWebServicesCredentialsBinding', 
+        accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+        credentialsId: '279824249008'
+    ]]) {
+        sh 'terraform apply --auto-approve'
+    }
             }
         }
     }
